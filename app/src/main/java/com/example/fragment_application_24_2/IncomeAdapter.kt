@@ -20,14 +20,13 @@ class IncomeAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IncomeViewHolder {
-        val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.income_item, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.income_item, parent, false)
         return IncomeViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: IncomeViewHolder, position: Int) {
         val income = incomeList[position]
-        holder.dateTextView.text = income.date
+        holder.dateTextView.text = "${income.year}-${income.month}-${income.day}"
         holder.descriptionTextView.text = income.description
         holder.amountTextView.text = income.amount.toString()
 
@@ -56,8 +55,11 @@ class IncomeAdapter(
     }
 
     fun removeIncome(income: Income) {
-        incomeList.remove(income)
-        onIncomeRemoved(income)
-        notifyDataSetChanged()
+        val position = incomeList.indexOf(income)
+        if (position != -1) {
+            incomeList.removeAt(position)
+            onIncomeRemoved(income)
+            notifyItemRemoved(position)
+        }
     }
 }

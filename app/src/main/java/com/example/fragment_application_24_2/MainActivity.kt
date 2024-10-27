@@ -2,6 +2,7 @@ package com.example.fragment_application_24_2
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
@@ -18,7 +19,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), EditTaskDialogFragment.EditTaskDialogListener {
     private lateinit var navController: androidx.navigation.NavController
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,6 +66,20 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onTaskEdited(income: Income) {
+        updateFragment3Data()
+    }
+
+    fun updateFragment3Data() {
+        val fragment3 = supportFragmentManager.findFragmentById(R.id.fragment3) as? Fragment3
+        if (fragment3 != null) {
+            Log.d("MainActivity", "Fragment3 found, updating data")
+            fragment3.updateData()
+        } else {
+            Log.d("MainActivity", "Fragment3 not found")
         }
     }
 

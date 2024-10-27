@@ -9,6 +9,7 @@
     android:padding="16dp">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -28,13 +29,28 @@
         android:id="@+id/buttonDelete"
         android:layout_width="221dp"
         android:layout_height="53dp"
-        android:text="Удалить задачу"
+        android:text="@string/delete_task"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.692" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonChange"
+        android:layout_width="221dp"
+        android:layout_height="53dp"
+        android:text="@string/change_task"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.803"
+        tools:ignore="MissingConstraints">
+
+    </androidx.appcompat.widget.AppCompatButton>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

@@ -8,4 +8,6 @@
     <string name="count">Количество</string>
     <string name="press">Нажать</string>
     <string name="delete_zadachy">Удалить задачу (доход)</string>
+    <string name="delete_task">Удалить задачу</string>
+    <string name="change_task">Редактировать задачу</string>
 </resources>

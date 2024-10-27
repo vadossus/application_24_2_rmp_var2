@@ -46,18 +46,27 @@ class Fragment3 : Fragment() {
             }
         }
 
-        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
+        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView1)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         incomeList = mutableListOf()
         incomeAdapter = IncomeAdapter(incomeList, {})
+        loadDataFromSharedPreferences()
         recyclerView.adapter = incomeAdapter
+    }
 
+    private fun loadDataFromSharedPreferences() {
         val sharedPreferences = requireContext().getSharedPreferences("income_data", MODE_PRIVATE)
-        val incomeSet = sharedPreferences.getStringSet("income_list", emptySet())
+        val incomeSet = sharedPreferences.getStringSet("income_list", emptySet()) ?: emptySet()
         incomeList.clear()
-        incomeList.addAll(incomeSet!!.map { Income.fromString(it) })
+        incomeList.addAll(incomeSet.map { Income.fromString(it) })
         incomeAdapter.notifyDataSetChanged()
     }
+
+    fun updateData() {
+        loadDataFromSharedPreferences()
+        incomeAdapter.notifyDataSetChanged()
+    }
+
 
 }
